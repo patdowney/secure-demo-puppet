@@ -1,0 +1,7 @@
+vendor
+.tmp
+.output
+.bundle
+.vagrant
+.librarian
+.*.swp

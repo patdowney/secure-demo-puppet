@@ -1,0 +1,30 @@
+#!/bin/bash
+
+cd $(dirname ${BASH_SOURCE[0]})/.. || exit
+
+if [ -f /etc/default/puppet-apply ]; then
+	source /etc/default/puppet-apply
+fi
+
+hiera_config_args=""
+HIERA_CONFIG=${HIERA_CONFIG:-/etc/hiera/hiera.yaml}
+if [ -f "${HIERA_CONFIG}" ];
+then
+  hiera_config_args="--hiera_config=${HIERA_CONFIG}"
+else
+  echo "Warning: No hiera config found"
+fi
+
+PUPPET_HOME=/opt/puppetlabs/puppet
+
+nice ${PUPPET_HOME}/bin/puppet apply \
+  --detailed-exitcodes \
+  ${hiera_config_args} \
+  --modulepath=${PWD}:${PWD}/modules:${PWD}/vendor/modules \
+  --write-catalog-summary \
+  "$@" \
+  $PWD/manifests/site.pp
+case $? in
+  2) exit 0;; # deal with alternative success code 
+  *) exit;;
+esac

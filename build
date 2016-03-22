@@ -1,0 +1,37 @@
+#!/bin/bash
+set -xe
+
+PACKAGE_MAINTAINER="pat.downey@gmail.com"
+PACKAGE_URL="https://github.com/patdowney/demo-puppet"
+PACKAGE_TYPE="deb"
+
+bundle install --path vendor/bundle --binstubs .bundle/bin
+
+bundle exec librarian-puppet package --strip-dot-git --path=vendor/modules --verbose
+bundle exec librarian-puppet install --local --strip-dot-git --path=vendor/modules --verbose
+
+bundle exec puppet-lint --fail-on-warnings --with-context --with-filename manifests modules
+
+VERSION=${TRAVIS_BUILD_NUMBER:-0}
+
+PACKAGE_NAME=${PACKAGE_NAME:-$(basename `pwd`)}
+
+mkdir -p .output
+rm -rf .output/*
+
+bundle exec  fpm -t ${PACKAGE_TYPE} -s dir \
+  --prefix /usr/share/${PACKAGE_NAME} \
+  --package ".output/${PACKAGE_NAME}_${VERSION}_all.${PACKAGE_TYPE}" \
+  --name "${PACKAGE_NAME}" \
+  --version "${VERSION}" \
+  --depends 'puppet-agent' \
+  --architecture all \
+  --maintainer "$PACKAGE_MAINTAINER" \
+  --url $PACKAGE_URL \
+  --deb-user root \
+  --deb-group root \
+  --verbose \
+  bin/ \
+  manifests/ \
+  modules/*/{files,lib,manifests,templates} \
+  vendor/modules/*/{files,lib,manifests,templates}
