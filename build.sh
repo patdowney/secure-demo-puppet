@@ -33,5 +33,5 @@ bundle exec  fpm -t ${PACKAGE_TYPE} -s dir \
   --verbose \
   bin/ \
   manifests/ \
-  modules/*/{files,lib,manifests,templates} \
-  vendor/modules/*/{files,lib,manifests,templates}
+  $(find modules/ -name files -or -name lib -or -name manifests -or -name templates) \
+  $(find vendor/modules/ -name files -or -name lib -or -name manifests -or -name templates)
