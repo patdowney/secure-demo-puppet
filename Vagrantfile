@@ -5,7 +5,11 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "puppetlabs/debian-8.2-64-puppet"
+#  config.vm.box = "puppetlabs/debian-8.2-64-puppet"
+   config.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
+
+
+   config.vm.provision "shell", inline: "apt-get update"
 
 
   [ 'web', 'standalone', 'java' ].each_with_index do |s,i|

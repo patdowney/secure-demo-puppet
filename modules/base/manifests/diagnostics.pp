@@ -6,8 +6,6 @@ class base::diagnostics() {
       ensure => latest;
     'lsof':
       ensure => latest;
-    'linux-tools':
-      ensure => latest;
     'iotop':
       ensure => latest;
     'ngrep':

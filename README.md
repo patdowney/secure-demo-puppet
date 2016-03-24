@@ -1,3 +1,7 @@
+# Standalone Puppet Demo
+
+For more information on roles and profiles please see http://www.craigdunn.org/2012/05/239/
+
 ## Bootstrapping
 If not using `vagrant` you will need to bootstrap your target machines with the following:
   * `puppet-agent` package installed - for ease of use use Puppetlabs yum/apt repositories.

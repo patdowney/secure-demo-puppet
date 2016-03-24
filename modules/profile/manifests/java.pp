@@ -1,3 +1,5 @@
 class profile::java() {
-  class { 'java': }
+  class { 'oracle_java':
+    add_alternative => true
+  }
 }
