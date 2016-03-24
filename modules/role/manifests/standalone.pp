@@ -3,5 +3,7 @@ class role::standalone() {
   include ::profile::diagnostics
   include ::profile::nginx
   include ::profile::static_website_example
+  include ::profile::reverse_proxy_example
+
   include ::profile::java_service
 }
