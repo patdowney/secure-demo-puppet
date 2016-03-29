@@ -1,4 +1,6 @@
 class base::daemontools() {
+  include ::daemontools
+
   case $::operatingsystem {
     debian: {
       $daemontools_service_name = 'daemontools'
@@ -8,28 +10,11 @@ class base::daemontools() {
     }
   }
 
-  package { 'daemontools-run':
-    ensure => latest;
-  }
-
-  file { '/service':
-    ensure => directory;
-  }
-
-  file { '/etc/service':
-    target => '/service',
-    ensure => link,
-    force  => true,
-    notify => Service[$daemontools_service_name]
-  }
-
-  group { 'nobody':
-    ensure => present; }
-
-
-  service { $daemontools_service_name:
-    ensure => running,
-    enable => true;
+  service { 'daemontools_service':
+    name    => $daemontools_service_name,
+    ensure  => running,
+    enable  => true,
+    require => Class['daemontools'];
   }
  
 }

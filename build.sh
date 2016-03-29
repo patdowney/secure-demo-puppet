@@ -2,7 +2,7 @@
 set -xe
 
 PACKAGE_MAINTAINER="pat.downey@gmail.com"
-PACKAGE_URL="https://github.com/patdowney/demo-puppet"
+PACKAGE_URL="https://github.com/patdowney/secure-demo-puppet"
 PACKAGE_TYPE="deb"
 
 bundle install --path vendor/bundle --binstubs .bundle/bin

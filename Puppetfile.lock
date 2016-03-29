@@ -1,28 +1,24 @@
 FORGE
   remote: https://forgeapi.puppetlabs.com
   specs:
-    aco-oracle_java (2.6.1)
-      puppet-archive (< 0.5.0, >= 0.4.4)
-      puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
     jfryman-nginx (0.3.0)
       puppetlabs-apt (< 3.0.0, >= 1.8.0)
       puppetlabs-concat (< 3.0.0, >= 1.1.1)
       puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
-    puppet-archive (0.4.8)
-      puppetlabs-pe_gem (>= 0.0.1)
-      puppetlabs-stdlib (>= 2.2.1)
     puppetlabs-apt (2.2.2)
       puppetlabs-stdlib (< 5.0.0, >= 4.5.0)
     puppetlabs-concat (2.1.0)
       puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
-    puppetlabs-pe_gem (0.2.0)
     puppetlabs-stdlib (4.11.0)
-    willdurand-nodejs (1.9.3)
-      puppetlabs-stdlib (>= 3.2.1)
+
+GIT
+  remote: git://github.com/ensighten/puppet-daemontools.git
+  ref: master
+  sha: c03a311a6e670ac09cf4530a6d429c5f3416456f
+  specs:
+    jbussdieker-daemontools (0.2.0-ens)
 
 DEPENDENCIES
-  aco-oracle_java (>= 0)
+  jbussdieker-daemontools (>= 0)
   jfryman-nginx (>= 0)
-  puppetlabs-apt (>= 0)
-  willdurand-nodejs (>= 0)
 
