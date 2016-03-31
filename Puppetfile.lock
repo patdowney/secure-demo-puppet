@@ -1,10 +1,16 @@
 FORGE
   remote: https://forgeapi.puppetlabs.com
   specs:
+    KyleAnderson-consul (1.0.5)
+      nanliu-staging (< 2.0.0, >= 0.4.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
     jfryman-nginx (0.3.0)
       puppetlabs-apt (< 3.0.0, >= 1.8.0)
       puppetlabs-concat (< 3.0.0, >= 1.1.1)
       puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
+    nanliu-staging (1.0.3)
+    pcfens-ca_cert (1.2.0)
+      puppetlabs-stdlib (< 5.0.0, >= 3.0.0)
     puppetlabs-apt (2.2.2)
       puppetlabs-stdlib (< 5.0.0, >= 4.5.0)
     puppetlabs-concat (2.1.0)
@@ -19,6 +25,8 @@ GIT
     jbussdieker-daemontools (0.2.0-ens)
 
 DEPENDENCIES
+  KyleAnderson-consul (>= 0)
   jbussdieker-daemontools (>= 0)
   jfryman-nginx (>= 0)
+  pcfens-ca_cert (>= 0)
 

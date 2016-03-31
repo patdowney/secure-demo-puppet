@@ -10,13 +10,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
    config.vm.provision "shell", inline: "apt-get update"
 
+  servers = {
+    'ca' => { 'role' => 'ca', 'ip' => '172.10.10.10' },
+    'config01'   => { 'role' => 'config_server', 'ip' => '172.10.10.16' },
+    'config02'   => { 'role' => 'config_server', 'ip' => '172.10.10.17' },
+    'config03'   => { 'role' => 'config_server', 'ip' => '172.10.10.18' },
+    'configui01' => { 'role' => 'config_ui',     'ip' => '172.10.10.20' },
+  }
 
-  [ 'ca' ].each_with_index do |s,i|
-    config.vm.define "#{s}-server" do |server|
-      server.vm.hostname = "#{s}-server"
-      server.vm.network "private_network", ip: "172.10.10.#{10 + i}"
+  servers.each_with_index do |server_properties, i|
+    name = server_properties.first
+    role = server_properties.last['role']
+    private_ip = server_properties.last['ip']
 
-      server.vm.provision "shell", inline: "mkdir -p /etc/facter/facts.d ; echo 'role=#{s}' > /etc/facter/facts.d/role.txt"
+    config.vm.define "#{name}" do |server|
+      server.vm.hostname = "#{name}"
+      server.vm.network "private_network", ip: private_ip
+
+      server.vm.provision "shell", inline: "mkdir -p /etc/facter/facts.d ; echo 'role=#{role}' > /etc/facter/facts.d/role.txt"
       server.vm.provision "shell", inline: "echo 'env=vagrant' > /etc/facter/facts.d/env.txt"
 
 # comment out the following to test debian package bit
@@ -30,7 +41,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         puppet.environment = "production"
         puppet.environment_path = "../.."
         puppet.hiera_config_path = "../demo-hiera/hiera.yaml"
-#        puppet.options = [ "--verbose", "--debug" ]
+        puppet.facter = {
+          "primary_auth_key" => "0123456789ABCDEF0123456789ABCDEF",
+          "consul_encrypt_key" => "71NuxGFXa727cmXKV/XD1Q=="
+        }
       end
 # END BLOCK
     end
