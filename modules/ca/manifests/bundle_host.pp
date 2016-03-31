@@ -1,3 +1,21 @@
+# Class: ca::bundle_host
+# ===========================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 class ca::bundle_host(
   Integer $port    = 80,
   $tls_cert = undef,
@@ -6,9 +24,9 @@ class ca::bundle_host(
   include ::cfssl
   include ::nginx
 
-  nginx::resource::vhost { "bundles-vhost":
+  nginx::resource::vhost { 'bundles-vhost':
     www_root => "${cfssl::config_root}/bundles",
-    require => File["${cfssl::config_root}"]
+    require  => File[$::cfssl::config_root]
   }
 
 }

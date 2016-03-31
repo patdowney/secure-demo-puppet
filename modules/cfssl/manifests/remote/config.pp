@@ -1,6 +1,24 @@
+# Class: cfssl::remote::config
+# ============================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 define cfssl::remote::config(
+  Hash   $config,
   String $owner = 'cfssl',
-  Hash   $config
 ) {
   file {
     "${::cfssl::config_root}/${title}-config.json":

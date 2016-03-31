@@ -1,3 +1,21 @@
+# Class: profile::ca
+# ===========================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 class profile::ca() {
   include ::base::daemontools
   include ::cfssl

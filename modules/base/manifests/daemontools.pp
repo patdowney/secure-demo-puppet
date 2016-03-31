@@ -1,3 +1,21 @@
+# Class: base::daemontools
+# ===========================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 class base::daemontools() {
   include ::daemontools
 
@@ -8,13 +26,15 @@ class base::daemontools() {
     ubuntu: {
       $daemontools_service_name = 'svscan'
     }
+    default: {
+      $daemontools_service_name = 'svscan'
+    }
   }
 
   service { 'daemontools_service':
-    name    => $daemontools_service_name,
     ensure  => running,
+    name    => $daemontools_service_name,
     enable  => true,
     require => Class['daemontools'];
   }
- 
 }

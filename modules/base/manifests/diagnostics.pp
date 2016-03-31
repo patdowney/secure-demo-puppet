@@ -1,3 +1,21 @@
+# Class: base::diagnostics
+# ===========================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 class base::diagnostics() {
   package {
     'strace':

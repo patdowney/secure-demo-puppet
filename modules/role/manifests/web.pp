@@ -1,3 +1,21 @@
+# Class: role::web
+# ===========================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 class role::web() {
   include ::profile::base
   include ::profile::nginx

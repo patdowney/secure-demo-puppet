@@ -1,3 +1,21 @@
+# Define: cfssl::download
+# =======================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 define cfssl::download(
   String $release,
   String $binary = $title,
@@ -10,19 +28,19 @@ define cfssl::download(
 
   exec {
     "wget_${release}_${binary}":
-      command => "/usr/bin/wget --output-document=${release_target} ${base_url}/${release}/${binary}_${platform}-${architecture}",
-      creates => "${release_target}"
+      command => "/usr/bin/wget --output-document=${release_target} ${base_url}/${release}/${binary}_${platform}-${::architecture}",
+      creates => $release_target
   }
 
-  file { "${release_target}":
+  file { $release_target:
     ensure => present,
     mode   => '0755'
   }
 
   file { "${prefix}/${binary}":
     ensure  => link,
-    target  => "${release_target}",
+    target  => $release_target,
     force   => true,
-    require => File["${release_target}"]
+    require => File[$release_target]
   }
 }

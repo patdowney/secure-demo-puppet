@@ -1,8 +1,26 @@
+# Define: cfssl::genkey
+# =====================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 define cfssl::genkey(
-  String $caname = $title,
   Boolean $initca,
   Hash $csr,
-) 
+  String $caname = $title,
+)
 {
 
   file {

@@ -1,3 +1,21 @@
+# Class: role::ca
+# ===============
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 class role::ca() {
   include ::profile::base
   include ::profile::diagnostics

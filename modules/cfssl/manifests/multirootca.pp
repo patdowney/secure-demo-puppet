@@ -1,3 +1,21 @@
+# Class: cfssl::multirootca
+# ===========================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 class cfssl::multirootca(
   Array   $cas                  = [],
   String  $address              = ':8888',
@@ -21,13 +39,13 @@ class cfssl::multirootca(
   if $tls_cert {
     $tls_cert_arg = "-tls-cert ${tls_cert}"
   } else {
-    $tls_cert_arg = ""
+    $tls_cert_arg = ''
   }
 
   if $tls_key {
     $tls_key_arg = "-tls-key ${tls_key}"
   } else {
-    $tls_key_arg = ""
+    $tls_key_arg = ''
   }
 
   daemontools::service {'cfssl-multirootca':

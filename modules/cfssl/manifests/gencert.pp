@@ -1,12 +1,30 @@
+# Define: cfssl::gencert
+# ===========================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 define cfssl::gencert(
-  String $caname = $title,
-  Boolean $initca = false,
   String $profile,
   String $ca,
   Hash $csr,
+  String $caname = $title,
+  Boolean $initca = false,
   Boolean $configure_multirootca = false,
   Boolean $generate_bundle = false
-) 
+)
 {
 
   $certificate_root     = "${cfssl::config_root}/${caname}"
@@ -21,7 +39,7 @@ define cfssl::gencert(
   $config_path = "${cfssl::config_root}/config.json"
   $multirootca_config_path = "${cfssl::config_root}/multirootca-config.json"
 
-  $private_key_proto = "file"
+  $private_key_proto = 'file'
 
   file {
     $certificate_root:
@@ -54,7 +72,7 @@ define cfssl::gencert(
     concat::fragment {
       "${caname}_multirootca_fragment":
         target  => $cfssl::multirootca_ini,
-        content => template("cfssl/multirootca_fragment.ini.erb")
+        content => template('cfssl/multirootca_fragment.ini.erb')
     }
   }
 

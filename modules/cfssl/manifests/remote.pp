@@ -1,3 +1,21 @@
+# Class: cfssl::remote
+# ===========================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 class cfssl::remote(
   Hash $configs  = {},
   Hash $gencerts = {},

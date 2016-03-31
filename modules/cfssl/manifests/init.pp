@@ -74,6 +74,6 @@ class cfssl(
       ensure  => directory,
       owner   => 'cfssl',
       group   => 'cfssl',
-      require => File["${config_root}"]
+      require => File[$config_root]
   }
 }

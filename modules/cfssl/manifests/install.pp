@@ -42,7 +42,9 @@
 #
 # Copyright 2016 Your name here, unless otherwise noted.
 #
-class cfssl::install()
+class cfssl::install(
+  String $release = 'R2'
+)
 {
   group {
     'cfssl':
@@ -80,9 +82,10 @@ class cfssl::install()
 #  }
 
 
-  cfssl::download { 
-    ['cfssl','multirootca','mkbundle', 'cfssljson', 'cfssl-scan', 'cfssl-newkey', 'cfssl-certinfo', 'cfssl-bundle']:
-      release => 'R1.2'
+  cfssl::download {
+    ['cfssl','multirootca','mkbundle', 'cfssljson', 'cfssl-scan',
+  'cfssl-newkey', 'cfssl-certinfo', 'cfssl-bundle']:
+      release => $release
   }
 
 }

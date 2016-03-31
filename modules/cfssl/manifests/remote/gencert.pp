@@ -1,11 +1,29 @@
+# Class: cfssl::remote::gencert
+# ===========================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 define cfssl::remote::gencert(
-  String $caname = $title,
-  String $owner = "cfssl",
   String $config,
   String $label,
   String $profile,
   Hash $csr,
-) 
+  String $caname = $title,
+  String $owner = 'cfssl',
+)
 {
 
   $certificate_root     = "${cfssl::config_root}/${caname}"
@@ -15,7 +33,7 @@ define cfssl::remote::gencert(
 
   $config_path = "${cfssl::config_root}/${config}-config.json"
 
-  $private_key_proto = "file"
+  $private_key_proto = 'file'
 
   file {
     $certificate_root:
