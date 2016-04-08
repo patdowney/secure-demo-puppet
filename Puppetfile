@@ -7,3 +7,4 @@ mod 'jbussdieker/daemontools',
   :git => 'git://github.com/ensighten/puppet-daemontools.git'
 
 mod 'KyleAnderson/consul'
+mod 'jsok/vault'

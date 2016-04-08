@@ -23,6 +23,10 @@ class config::consul::agent(
   String  $key_file,
   String  $ca_file,
   Array   $retry_join,
+  String  $client_addr,
+  String  $advertise_addr,
+  String  $acl_token,
+  String  $acl_datacenter,
   String  $version          = '0.6.4',
   String  $log_level        = 'INFO',
   Integer $https_port       = 8501,
@@ -56,6 +60,8 @@ class config::consul::agent(
       'cert_file'              => $cert_file,
       'key_file'               => $key_file,
       'ca_file'                => $ca_file,
+      'client_addr'            => $client_addr,
+      'advertise_addr'         => $advertise_addr,
       'ports'                  => {
         'http'  => -1,
         'https' => $https_port
@@ -63,6 +69,8 @@ class config::consul::agent(
       'verify_incoming'        => $verify_incoming,
       'verify_outgoing'        => true,
       'verify_server_hostname' => $verify_server_hostname,
+      'acl_token'              => $acl_token,
+      'acl_datacenter'         => $acl_datacenter,
     }
   }
 }

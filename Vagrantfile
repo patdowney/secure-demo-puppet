@@ -16,6 +16,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     'config02'   => { 'role' => 'config_server', 'ip' => '172.10.10.17' },
     'config03'   => { 'role' => 'config_server', 'ip' => '172.10.10.18' },
     'configui01' => { 'role' => 'config_ui',     'ip' => '172.10.10.20' },
+    'vault01'    => { 'role' => 'vault_server',  'ip' => '172.10.10.32' },
+    'vault02'    => { 'role' => 'vault_server',  'ip' => '172.10.10.33' },
   }
 
   servers.each_with_index do |server_properties, i|
@@ -42,9 +44,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         puppet.environment_path = "../.."
         puppet.hiera_config_path = "../demo-hiera/hiera.yaml"
         puppet.facter = {
-          "primary_auth_key" => "0123456789ABCDEF0123456789ABCDEF",
-          "consul_encrypt_key" => "71NuxGFXa727cmXKV/XD1Q=="
+          "cfssl_auth_key_primary"     => "0123456789ABCDEF0123456789ABCDEF",
+          "consul_encrypt_key"         => "71NuxGFXa727cmXKV/XD1Q==",
+          "consul_acl_master_token"    => "95623A43-F22E-48D6-8693-31AA177A56B3",
+          "consul_acl_token_vault"     => "DF1737B6-2267-48CD-A57F-1B56A0244369",
+          "consul_acl_token_consul_ui" => "8C684DC2-EB74-4254-BE62-4D8D063A6591",
         }
+#puppet.options = "--debug"
       end
 # END BLOCK
     end

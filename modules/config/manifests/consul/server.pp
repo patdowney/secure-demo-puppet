@@ -32,7 +32,12 @@ class config::consul::server(
   Boolean $verify_outgoing        = false,
   Boolean $verify_server_hostname = false,
   Integer $http_port              = 8500,
-  Integer $https_port             = -1
+  Integer $https_port             = -1,
+  $acl_datacenter                 = undef,
+  $acl_default_policy             = undef,
+  $acl_master_token               = undef,
+  $acl_token                      = undef,
+  $acls                           = {}
 ) {
 
   if $start_join {
@@ -71,6 +76,19 @@ class config::consul::server(
       'verify_incoming'        => $verify_incoming,
       'verify_outgoing'        => $verify_outgoing,
       'verify_server_hostname' => $verify_server_hostname,
+      'acl_datacenter'         => $acl_datacenter,
+      'acl_default_policy'     => $acl_default_policy,
+      'acl_master_token'       => $acl_master_token,
+      'acl_token'              => $acl_token,
+      'disable_remote_exec'    => true
     }
   }
+
+  file { '/etc/consul/acl.d':
+    ensure  => directory,
+    owner   => 'consul',
+    require => File['/etc/consul']
+  }
+
+  create_resources('config::consul::server::acl', $acls)
 }

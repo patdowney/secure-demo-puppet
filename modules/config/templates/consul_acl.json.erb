@@ -1,0 +1,11 @@
+<% require 'json' -%>
+{
+  "Name": "puppet/<%= @title -%>",
+<% if @rules -%>
+  "Rules": "<%= @rules.gsub("\"", "\\\"").gsub("\n", "\\n") -%>",
+<% end -%>
+<% if @id -%>
+  "ID": "<%= @id -%>",
+<% end -%>
+  "Type": "<%= @type -%>"
+}
