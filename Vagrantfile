@@ -7,6 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #  config.vm.box = "puppetlabs/debian-8.2-64-puppet"
    config.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
+   #config.vm.box = "puppetlabs/ubuntu-16.04-64-puppet"
 
    config.vm.provision "shell", inline: "apt-get update"
 
@@ -17,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     'config03'   => { 'role' => 'config_server', 'ip' => '172.10.10.18' },
     'configui01' => { 'role' => 'config_ui',     'ip' => '172.10.10.20' },
     'vault01'    => { 'role' => 'vault_server',  'ip' => '172.10.10.32' },
-    'vault02'    => { 'role' => 'vault_server',  'ip' => '172.10.10.33' },
+#    'vault02'    => { 'role' => 'vault_server',  'ip' => '172.10.10.33' },
   }
 
   servers.each_with_index do |server_properties, i|
@@ -25,12 +26,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     role = server_properties.last['role']
     private_ip = server_properties.last['ip']
 
+   # config.vm.provider "virtualbox" do |vb|
+   #   vb.customize ["modifyvm", :id, "--macaddress1", "5CA1AB1E0001" ]
+   # end
+
     config.vm.define "#{name}" do |server|
+      config.vm.provider "virtualbox" do |vb|
+        vb.customize ["modifyvm", :id, "--macaddress1", "5CA1AB1E000#{i}" ]
+      end
       server.vm.hostname = "#{name}"
       server.vm.network "private_network", ip: private_ip
 
       server.vm.provision "shell", inline: "mkdir -p /etc/facter/facts.d ; echo 'role=#{role}' > /etc/facter/facts.d/role.txt"
       server.vm.provision "shell", inline: "echo 'env=vagrant' > /etc/facter/facts.d/env.txt"
+
 
 # comment out the following to test debian package bit
 # START BLOCK

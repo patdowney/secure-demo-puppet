@@ -52,7 +52,7 @@ class cfssl::multirootca(
     ensure  => running,
     command => "/usr/local/bin/multirootca -a ${address} ${tls_cert_arg} ${tls_key_arg} -loglevel ${multirootca_loglevel} -roots ${cfssl::multirootca_ini}",
     logpath => '/var/log/cfssl-multirootca',
-    require => File[$cfssl::multiroot_ini],
+    require => Concat[$cfssl::multirootca_ini],
     notify  => Service['daemontools_service']
   }
 

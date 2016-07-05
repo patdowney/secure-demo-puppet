@@ -24,7 +24,11 @@ class base::daemontools() {
       $daemontools_service_name = 'daemontools'
     }
     ubuntu: {
-      $daemontools_service_name = 'svscan'
+      if( versioncmp($::operatingsystemrelease, '15.04') > -1 ) {
+        $daemontools_service_name = 'daemontools'
+      } else {
+        $daemontools_service_name = 'svscan'
+      }
     }
     default: {
       $daemontools_service_name = 'svscan'

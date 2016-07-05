@@ -50,7 +50,8 @@ define cfssl::remote::gencert(
       owner   => $owner,
       group   => 'cfssl',
       mode    => '0644',
-      require => File[$certificate_root]
+      require => File[$certificate_root],
+      notify  => Exec["gencert-${caname}"]
   }
 
   exec { "gencert-${caname}":

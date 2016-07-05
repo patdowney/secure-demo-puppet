@@ -6,7 +6,7 @@ class config::vault::server(
   String $consul_key_file,
   String $consul_ca_file,
   String $consul_token,
-  $listener_addr = "${::ipaddress_eth0}:8200"
+  String $listener_addr
 ) {
   class { '::vault':
     config_hash => {
@@ -30,4 +30,6 @@ class config::vault::server(
       }
     }
   }
+
+  Exec['gencert-vaultconsul'] ~> Service['vault']
 }
