@@ -17,12 +17,12 @@
 # ---------
 #
 class cfssl::multirootca(
-  Array   $cas                  = [],
-  String  $address              = ':8888',
-  Integer $multirootca_loglevel = 1,
-  Hash    $config               = {},
-  String  $tls_cert             = undef,
-  String  $tls_key              = undef
+  $cas                  = [], # Array
+  $address              = ':8888', # String
+  $multirootca_loglevel = 1, # Integer
+  $config               = {}, # Hash
+  $tls_cert             = undef, # String
+  $tls_key              = undef # String
 ) {
   include ::cfssl
 

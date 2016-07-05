@@ -17,8 +17,8 @@
 # ---------
 #
 class cfssl::remote(
-  Hash $configs  = {},
-  Hash $gencerts = {},
+  $configs  = {}, # Hash
+  $gencerts = {}, # Hash
 )
 {
   include ::cfssl

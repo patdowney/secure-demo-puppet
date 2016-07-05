@@ -43,7 +43,7 @@
 # Copyright 2016 Your name here, unless otherwise noted.
 #
 class cfssl::install(
-  String $release = 'R1.2'
+  $release = 'R1.2' # String
 )
 {
   group {

@@ -17,9 +17,9 @@
 # ---------
 #
 define cfssl::genkey(
-  Boolean $initca,
-  Hash $csr,
-  String $caname = $title,
+  $initca, # Boolean
+  $csr, # Hash
+  $caname = $title, # String
 )
 {
 
@@ -48,5 +48,12 @@ define cfssl::genkey(
     user    => 'cfssl',
     creates => "/etc/cfssl/${caname}/${caname}.pem",
     require => [ File["/etc/cfssl/${caname}"], File['/usr/local/bin/cfssl'] ]
+  }
+
+  file {
+    "/etc/cfssl/${caname}/${caname}.pem":
+      require => Exec["genkey-${caname}"];
+    "/etc/cfssl/${caname}/${caname}-key.pem":
+      require => Exec["genkey-${caname}"];
   }
 }

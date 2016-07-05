@@ -17,13 +17,13 @@
 # ---------
 #
 define cfssl::gencert(
-  String $profile,
-  String $ca,
-  Hash $csr,
-  String $caname = $title,
-  Boolean $initca = false,
-  Boolean $configure_multirootca = false,
-  Boolean $generate_bundle = false
+  $profile, # String
+  $ca, # String
+  $csr, # Hash
+  $caname = $title, # String 
+  $initca = false, # Boolean
+  $configure_multirootca = false, # Boolean
+  $generate_bundle = false # Boolean
 )
 {
 
@@ -65,7 +65,20 @@ define cfssl::gencert(
     cwd     => $certificate_root,
     user    => 'cfssl',
     creates => $certificate_path,
-    require => [ File[$certificate_root], File['/usr/local/bin/cfssl'] ]
+    require => [
+      File['/usr/local/bin/cfssl'],
+      File[$certificate_csr_path],
+      File[$config_path],
+      File[$ca_certificate_path],
+      File[$ca_key_path]
+    ]
+  }
+
+  file {
+    $certificate_key_path:
+      require => Exec["gencert-${caname}"];
+    $certificate_path:
+      require => Exec["gencert-${caname}"]
   }
 
   if $configure_multirootca {
@@ -83,7 +96,7 @@ define cfssl::gencert(
       cwd     => $certificate_root,
       user    => 'cfssl',
       creates => "${cfssl::config_root}/bundles/${caname}-bundle.crt",
-      require => [ File['/usr/local/bin/mkbundle'] ]
+      require => [ File['/usr/local/bin/mkbundle'], File[$certificate_path] ]
     }
   }
 }

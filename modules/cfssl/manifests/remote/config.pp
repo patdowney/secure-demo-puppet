@@ -17,8 +17,8 @@
 # ---------
 #
 define cfssl::remote::config(
-  Hash   $config,
-  String $owner = 'cfssl',
+  $config, # Hash
+  $owner = 'cfssl', # String
 ) {
   file {
     "${::cfssl::config_root}/${title}-config.json":

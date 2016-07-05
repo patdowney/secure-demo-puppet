@@ -17,10 +17,10 @@
 # ---------
 #
 class config::ui(
-  String $vhost = 'configui',
-  Integer $port = 443,
-  Array $upstream_hosts = [],
-  String $upstream_proto = 'https'
+  $vhost = 'configui', # String
+  $port = 443, # Integer
+  $upstream_hosts = [], # Array
+  $upstream_proto = 'https' # String
 ) {
 
   include ::nginx

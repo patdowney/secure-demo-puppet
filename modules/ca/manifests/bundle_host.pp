@@ -17,7 +17,7 @@
 # ---------
 #
 class ca::bundle_host(
-  Integer $port    = 80,
+  $port    = 80, # Integer
   $tls_cert = undef,
   $tls_key  = undef
 ) {

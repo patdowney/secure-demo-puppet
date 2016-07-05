@@ -1,12 +1,12 @@
 # Class ::config::vault::server
 class config::vault::server(
-  String $tls_cert_file,
-  String $tls_key_file,
-  String $consul_cert_file,
-  String $consul_key_file,
-  String $consul_ca_file,
-  String $consul_token,
-  String $listener_addr
+  $tls_cert_file, # String
+  $tls_key_file, # String
+  $consul_cert_file, # String
+  $consul_key_file, # String
+  $consul_ca_file, # String
+  $consul_token, # String
+  $listener_addr # String
 ) {
   class { '::vault':
     config_hash => {

@@ -17,22 +17,22 @@
 # ---------
 #
 class config::consul::agent(
-  String  $datacenter,
-  String  $encrypt_key,
-  String  $cert_file,
-  String  $key_file,
-  String  $ca_file,
-  Array   $retry_join,
-  String  $client_addr,
-  String  $advertise_addr,
-  String  $acl_token,
-  String  $acl_datacenter,
-  String  $version          = '0.6.4',
-  String  $log_level        = 'INFO',
-  Integer $https_port       = 8501,
-  Boolean $enable_ui        = false,
-  Boolean $verify_incoming  = false,
-  Boolean $verify_server_hostname = false
+  $datacenter, # String
+  $encrypt_key, # String
+  $cert_file, # String
+  $key_file, # String
+  $ca_file, # String
+  $retry_join, # Array
+  $client_addr, # String
+  $advertise_addr, # String
+  $acl_token, # String
+  $acl_datacenter, # String
+  $version          = '0.6.4', # String
+  $log_level        = 'INFO', # String
+  $https_port       = 8501, # Integer
+  $enable_ui        = false, # Boolean
+  $verify_incoming  = false, # Boolean
+  $verify_server_hostname = false # Boolean
 ) {
 
   if $enable_ui {

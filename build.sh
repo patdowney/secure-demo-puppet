@@ -25,7 +25,7 @@ bundle exec  fpm -t ${PACKAGE_TYPE} -s dir \
   --package ".output/${PACKAGE_NAME}_${VERSION}_all.${PACKAGE_TYPE}" \
   --name "${PACKAGE_NAME}" \
   --version "${VERSION}" \
-  --depends 'puppet-agent' \
+  --depends 'puppet' \
   --architecture all \
   --maintainer "$PACKAGE_MAINTAINER" \
   --url $PACKAGE_URL \

@@ -17,12 +17,12 @@
 # ---------
 #
 define cfssl::remote::gencert(
-  String $config,
-  String $label,
-  String $profile,
-  Hash $csr,
-  String $caname = $title,
-  String $owner = 'cfssl',
+  $config, # String
+  $label, # String
+  $profile, # String
+  $csr, # Hash
+  $caname = $title, # String
+  $owner = 'cfssl', # String
 )
 {
 
@@ -60,7 +60,7 @@ define cfssl::remote::gencert(
     cwd     => $certificate_root,
     user    => $owner,
     creates => $certificate_path,
-    require => [ File[$certificate_root], File['/usr/local/bin/cfssl'] ]
+    require => [ File[$certificate_root], File['/usr/local/bin/cfssl'], File[$certificate_csr_path], File[$config_path] ]
   }
 
 }

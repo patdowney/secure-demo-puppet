@@ -17,22 +17,23 @@
 # ---------
 #
 class config::consul::server(
-  String  $datacenter,
-  String  $encrypt_key,
-  String  $cert_file,
-  String  $key_file,
-  String  $ca_file,
-  String  $advertise_addr,
-  String  $listen_addr,
-  String  $version                = '0.6.4',
-  Integer $bootstrap_expect       = 1,
-  String  $log_level              = 'INFO',
-  Array   $start_join             = undef,
-  Boolean $verify_incoming        = false,
-  Boolean $verify_outgoing        = false,
-  Boolean $verify_server_hostname = false,
-  Integer $http_port              = 8500,
-  Integer $https_port             = -1,
+  $datacenter, # String
+  $encrypt_key, # String
+  $cert_file, # String
+  $key_file, # String
+  $ca_file, # String
+  $advertise_addr, # String
+  $listen_addr, # String
+  $https_addr      = '127.0.0.1',
+  $version                = '0.6.4', # String
+  $bootstrap_expect       = 1, # Integer
+  $log_level              = 'INFO', # String
+  $start_join             = undef, # Array
+  $verify_incoming        = false, # Boolean
+  $verify_outgoing        = false, # Boolean
+  $verify_server_hostname = false, # Boolean
+  $http_port              = 8500, # Integer
+  $https_port             = -1, # Integer
   $acl_datacenter                 = undef,
   $acl_default_policy             = undef,
   $acl_master_token               = undef,

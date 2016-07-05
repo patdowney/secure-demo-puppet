@@ -43,11 +43,11 @@
 # Copyright 2016 Your name here, unless otherwise noted.
 #
 class cfssl(
-  Hash $config = {},
-  Hash $genkeys = {},
-  Hash $gencerts = {},
-  String $multirootca_ini = '/etc/cfssl/multirootca.ini',
-  String $config_root = '/etc/cfssl'
+  $config = {}, # Hash
+  $genkeys = {}, # Hash
+  $gencerts = {}, # Hash
+  $multirootca_ini = '/etc/cfssl/multirootca.ini', # String
+  $config_root = '/etc/cfssl' # String
 )
 {
   class { 'cfssl::install': }

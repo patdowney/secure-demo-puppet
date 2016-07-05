@@ -17,11 +17,11 @@
 # ---------
 #
 define cfssl::download(
-  String $release,
-  String $binary = $title,
-  String $platform = 'linux',
-  String $base_url = 'https://pkg.cfssl.org',
-  String $prefix = '/usr/local/bin'
+  $release, # String
+  $binary = $title, # String
+  $platform = 'linux', # String
+  $base_url = 'https://pkg.cfssl.org', # String
+  $prefix = '/usr/local/bin' # String
 ) {
 
   $release_target = "${prefix}/${binary}-${release}"
@@ -33,8 +33,9 @@ define cfssl::download(
   }
 
   file { $release_target:
-    ensure => present,
-    mode   => '0755'
+    ensure  => present,
+    mode    => '0755',
+    require => Exec["wget_${release}_${binary}"]
   }
 
   file { "${prefix}/${binary}":

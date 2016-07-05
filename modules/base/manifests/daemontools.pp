@@ -39,6 +39,6 @@ class base::daemontools() {
     ensure  => running,
     name    => $daemontools_service_name,
     enable  => true,
-    require => Class['daemontools'];
+    require => Class['::daemontools'];
   }
 }

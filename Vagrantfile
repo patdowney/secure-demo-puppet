@@ -38,7 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       server.vm.network "private_network", ip: private_ip
 
       server.vm.provision "shell", inline: "mkdir -p /etc/facter/facts.d ; echo 'role=#{role}' > /etc/facter/facts.d/role.txt"
-      server.vm.provision "shell", inline: "echo 'env=vagrant' > /etc/facter/facts.d/env.txt"
+      server.vm.provision "shell", inline: "echo 'provider=vagrant' > /etc/facter/facts.d/provider.txt"
 
 
 # comment out the following to test debian package bit
