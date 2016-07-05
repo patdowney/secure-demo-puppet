@@ -6,18 +6,18 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #  config.vm.box = "puppetlabs/debian-8.2-64-puppet"
-   config.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
-   #config.vm.box = "puppetlabs/ubuntu-16.04-64-puppet"
+   #config.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
+   config.vm.box = "puppetlabs/ubuntu-16.04-64-puppet"
 
    config.vm.provision "shell", inline: "apt-get update"
 
   servers = {
     'ca' => { 'role' => 'ca', 'ip' => '172.10.10.10' },
-    'config01'   => { 'role' => 'config_server', 'ip' => '172.10.10.16' },
-    'config02'   => { 'role' => 'config_server', 'ip' => '172.10.10.17' },
-    'config03'   => { 'role' => 'config_server', 'ip' => '172.10.10.18' },
-    'configui01' => { 'role' => 'config_ui',     'ip' => '172.10.10.20' },
-    'vault01'    => { 'role' => 'vault_server',  'ip' => '172.10.10.32' },
+    'consul00'   => { 'role' => 'consul', 'ip' => '172.10.10.16' },
+    'consul01'   => { 'role' => 'consul', 'ip' => '172.10.10.17' },
+    'consul02'   => { 'role' => 'consul', 'ip' => '172.10.10.18' },
+    'consului00' => { 'role' => 'configui',     'ip' => '172.10.10.20' },
+    'vault00'    => { 'role' => 'vault',  'ip' => '172.10.10.32' },
 #    'vault02'    => { 'role' => 'vault_server',  'ip' => '172.10.10.33' },
   }
 

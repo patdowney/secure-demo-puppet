@@ -1,5 +1,5 @@
-# Class: role::vault_server
-# ===========================
+# Class: role::configui
+# =====================
 #
 # Parameters
 # ----------
@@ -16,7 +16,7 @@
 # Copyright
 # ---------
 #
-class role::vault_server() {
+class role::configui() {
   include ::profile::base
-  include ::profile::vault_server
+  include ::profile::config_ui
 }

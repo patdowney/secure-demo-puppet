@@ -1,5 +1,5 @@
-# Class: role::config_server
-# ==========================
+# Class: role::vault
+# ==================
 #
 # Parameters
 # ----------
@@ -16,7 +16,7 @@
 # Copyright
 # ---------
 #
-class role::config_server() {
+class role::vault() {
   include ::profile::base
-  include ::profile::config_server
+  include ::profile::vault_server
 }

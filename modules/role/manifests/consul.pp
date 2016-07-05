@@ -1,5 +1,5 @@
-# Class: role::config_ui
-# ======================
+# Class: role::consul
+# ==========================
 #
 # Parameters
 # ----------
@@ -16,7 +16,7 @@
 # Copyright
 # ---------
 #
-class role::config_ui() {
+class role::consul() {
   include ::profile::base
-  include ::profile::config_ui
+  include ::profile::config_server
 }
