@@ -60,7 +60,8 @@ class config::consul::server(
       'log_level'              => $log_level,
       'advertise_addr'         => $advertise_addr,
       'addresses'              => {
-        'rpc' => $listen_addr
+        'rpc'   => $listen_addr,
+        'https' => $https_addr
       },
       'enable_syslog'          => true,
       'node_name'              => $::hostname,
