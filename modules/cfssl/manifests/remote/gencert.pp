@@ -60,7 +60,7 @@ define cfssl::remote::gencert(
     cwd     => $certificate_root,
     user    => $owner,
     creates => $certificate_path,
-    require => [ File[$certificate_root], File['/usr/local/bin/cfssl'], File[$certificate_csr_path], File[$config_path] ]
+    require => [ File[$certificate_root], File['/usr/local/bin/cfssl'], File[$certificate_csr_path], File[$config_path], Exec[ca_cert_update] ]
   }
 
 }
