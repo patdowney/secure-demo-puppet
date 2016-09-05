@@ -21,7 +21,7 @@
       "includePattern": "./.output/(secure-demo-puppet_0.1.*_all.deb)",
       "uploadPattern": "$1",
       "matrixParams": {
-        "deb_distribution": "precise,trusty,vivid",
+        "deb_distribution": "precise,trusty,vivid,wily,xenial",
         "deb_component": "main",
         "deb_architecture": "all"}
     }
