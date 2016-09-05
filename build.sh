@@ -22,7 +22,7 @@ rm -rf .output/*
 
 bundle exec  fpm -t ${PACKAGE_TYPE} -s dir \
   --prefix /usr/share/${PACKAGE_NAME} \
-  --package ".output/${PACKAGE_NAME}_${VERSION}_all.${PACKAGE_TYPE}" \
+  --package ".output/${PACKAGE_NAME}_0.1.${VERSION}_all.${PACKAGE_TYPE}" \
   --name "${PACKAGE_NAME}" \
   --version "${VERSION}" \
   --depends 'puppet' \
