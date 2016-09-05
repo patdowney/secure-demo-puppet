@@ -51,7 +51,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         puppet.module_path = ["vendor/modules", "modules"]
         puppet.environment = "production"
         puppet.environment_path = "../.."
-        puppet.hiera_config_path = "../demo-hiera/hiera.yaml"
+        puppet.hiera_config_path = "../secure-demo-hiera/hiera.yaml"
         puppet.facter = {
           "cfssl_auth_key_primary"     => "0123456789ABCDEF0123456789ABCDEF",
           "consul_encrypt_key"         => "71NuxGFXa727cmXKV/XD1Q==",
