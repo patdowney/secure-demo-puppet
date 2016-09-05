@@ -1,0 +1,30 @@
+{
+  "package": {
+    "name": "secure-demo-puppet",
+    "repo": "secure-demo",
+    "subject": "patdowney",
+    "desc": "Debian packages of Secure Demo",
+    "website_url": "https://github.com/patdowney/secure-demo-puppet",
+    "issue_tracker_url": "https://github.com/patdowney/secure-demo-puppet/issues",
+    "vcs_url": "https://github.com/patdowney/secure-demo-puppet.git",
+    "licenses": ["BSD 2-Clause"],
+    "github_repo": "patdowney/secure-demo-puppet",
+    "public_download_numbers": false,
+    "public_stats": false
+  },
+  "version": {
+    "name": "1.1"
+  },
+  "files":
+  [
+    {
+      "includePattern": "./(secure-demo-puppet_*_all.deb)",
+      "uploadPattern": "$1",
+      "matrixParams": {
+        "deb_distribution": "precise,trusty,vivid",
+        "deb_component": "main",
+        "deb_architecture": "all"}
+    }
+  ],
+  "publish": true
+}
