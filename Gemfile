@@ -9,7 +9,6 @@ gem 'puppet'
 
 gem 'bundler'
 gem 'librarian-puppet'
-gem 'librarianp', :git => 'https://github.com/voxpupuli/librarian.git', :tag => 'librarianp'
 gem 'fpm'
 
 gem 'puppet-lint'
