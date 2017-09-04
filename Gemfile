@@ -3,13 +3,13 @@ source 'https://rubygems.org'
 ruby '2.1.5'
 
 # version installed on ubuntu utopia
-gem 'facter', '2.1.0'
-gem 'hiera', '1.3.4'
-gem 'puppet', '3.6.1'
+gem 'facter'
+gem 'hiera'
+gem 'puppet'
 
 gem 'bundler'
 gem 'librarian-puppet'
-
+gem 'librarianp', :git => 'https://github.com/voxpupuli/librarian.git', :tag => 'librarianp'
 gem 'fpm'
 
 gem 'puppet-lint'
