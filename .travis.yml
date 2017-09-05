@@ -7,8 +7,6 @@ addons:
 language: ruby
 rvm:
 - 2.1.5
-env:
-- PACKAGE_TARGET=deb
 install: bundle install
 script:
 - "./build.sh"
@@ -18,5 +16,8 @@ deploy:
     user: patdowney
     key:
       secure: XHPJ5oy87ZJODk+sl2nczNyuOwmpdYAFFQhSc3FhF5BaMIH3GJC6clYqptYbfCn5qewYtxKvbVZq+ow53WwYDSI8+G3PiWJ8JmAvBh1SAA4ctMIts3WSzemKdXe+Re7hPMAxzWnYNbGH1mdBvnKF8v3XN0P/MIwNf+I7DR5WLd7iBNfq6w0CgleTPQwNG9l0Y+btr9bzF8uxKhiUlcOYue+QbvxP1upCYBAN0U9aQhr1GciJ9uy9uD/PCVEbQg4yKIjgvh5anIQgHzKAieDn0wzyXL6NpuokgsqVevN+rn1pngkjjRWwDTve+ZP3QxYrTOjimcU/Y9opWrSHpx4pMVX8SO+lUArHAW5C1axA+9VtnKPvGv7ZVefidCiXUK0R5P6XFND8oQzschIcPnu8los8cCWCfZa3OE6S5w2JGHwqHq1bXNugt2KaFzePs4og1W43lS7657T6KH0DeodAecL6bxZb0uME3DPyEiko/TMpHqWCXDuzzh6puaD2x7Ekf8fAd/bKKnbAGD1svQjIsav+HQmQYbHLqEmWJu4w5cMYlwka5zpZ0Rh83cMe9XuVA0oR5sJixoe35k+JUcBKeExKTRCQQIeitRAtTlV+tS7ziaRKfLGJUy2QDK0oEyG74hzNii6Q5WKv6gwLrc8Ig6fjt88zrZJi3146f+mRpE0=
-    on:
-      condition: "$PACKAGE_TARGET = deb"
+  - provider: bintray
+    file: ".bintray/rpm.json"
+    user: patdowney
+    key:
+      secure: NRvP43NJSpUJUvPQPgG9QggQtZvb4fGqBcGkNFof11NhlQVhVIzHe9C4BoeypkBXix9KNyySoA5m7ts3xQvg/KkcLzmARZKQfueISlGNxoIOpvI/NpEXQeH0x2UzZimC9bxa5vIpNGvDypjSUq53ssMraoXQDm6QyfBu/f0YeJtVz8uYPK8isKA8jxfRfeP2BSzARtc68fVQ/qfiEWkabCSoaHcxP4i6Zm4arsdcaWNIro5wGzZU4cjVZvysgwH0sPhvWdrC4288Nk9lC3bQqTrMZ7v4EwLv6f3ykTuNis4JdcUrPYjnQvalQHs4TBnBgst9ZIQ8ExgGSpezPr+DfwmWDtQlq9S0S2DlX/sc4Q+ReW5r3aWx4V4+UmqwNN1soWcEB05X5isqxy4hEu0/hc3uN+MnAUvKuZ9oDyz9ADYkwK9RxeA52l0yUEJztUth0lMgx85kbBo3AfxSkRjTvVLG15gJbMYmJdVAUUYfGa1DRf0gLIYiMAWoKUVxfvWDPeM4e0gAUCsNHLoUYyyYcXUtPL3Ld3ggWt4QpFX9bc/H61nUhmg2bxvbIBOZZl/2dl1LH0zwFw5iZujzXQwj7Ahcd8FPFfRen2milmuuyWCIuLTpoatL0MNTfRbwavdox7Us2c3+OZPeNYB/9WYDhe8gvVGDvmsc9hp4SYlgT1I=

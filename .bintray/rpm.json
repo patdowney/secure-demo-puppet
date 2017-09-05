@@ -1,0 +1,23 @@
+{
+  "package": {
+    "name": "secure-demo-puppet",
+    "repo": "rpm",
+    "subject": "patdowney",
+    "desc": "Secure Demo Puppet)",
+    "github_repo": "patdowney/secure-demo-puppet",
+    "licenses": ["BSD 2-Clause"],
+    "public_download_numbers": false,
+    "public_stats": false
+  },
+  "version": {
+    "name": "0.7.5"
+  },
+  "files":
+  [
+    {
+      "includePattern": "./(secure-demo-puppet_*.rpm)",
+      "uploadPattern": "$1"
+    }
+  ],
+  "publish": true
+}
