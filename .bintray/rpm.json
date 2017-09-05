@@ -1,7 +1,7 @@
 {
   "package": {
     "name": "secure-demo-puppet",
-    "repo": "rpm",
+    "repo": "secure-demo-rpm",
     "subject": "patdowney",
     "desc": "Secure Demo Puppet)",
     "github_repo": "patdowney/secure-demo-puppet",
