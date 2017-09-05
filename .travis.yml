@@ -4,6 +4,7 @@ addons:
   apt:
     packages:
     - wget
+    - rpm
 language: ruby
 rvm:
 - 2.1.5
