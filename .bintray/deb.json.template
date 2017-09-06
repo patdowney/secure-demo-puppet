@@ -16,30 +16,13 @@
   "files":
   [
     {
-      "includePattern": "./(%%PACKAGE_NAME%%_%%PACKAGE_VERSION%%.*_amd64.deb)",
+      "includePattern": "./.output/(%%PACKAGE_NAME%%_%%PACKAGE_VERSION%%.*_all.deb)",
       "uploadPattern": "$1",
       "matrixParams": {
         "deb_distribution": "precise,trusty,vivid,xenial,jessie",
         "deb_component": "main",
         "deb_architecture": "amd64"}
-    },
-    {
-      "includePattern": "./(%%PACKAGE_NAME%%_%%PACKAGE_VERSION%%.*_i386.deb)",
-      "uploadPattern": "$1",
-      "matrixParams": {
-        "deb_distribution": "precise,trusty,vivid,xenial,jessie",
-        "deb_component": "main",
-        "deb_architecture": "i386"}
-    },
-    {
-      "includePattern": "./(%%PACKAGE_NAME%%_%%PACKAGE_VERSION%%.*_armhf.deb)",
-      "uploadPattern": "$1",
-      "matrixParams": {
-        "deb_distribution": "precise,trusty,vivid,xenial,jessie",
-        "deb_component": "main",
-        "deb_architecture": "armhf"}
     }
-
   ],
   "publish": true
 }

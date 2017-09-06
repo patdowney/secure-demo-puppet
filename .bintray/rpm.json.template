@@ -16,11 +16,7 @@
   "files":
   [
     {
-      "includePattern": "./(%%PACKAGE_NAME%%_%%PACKAGE_VERSION%%.*_amd64.rpm)",
-      "uploadPattern": "$1"
-    },
-    {
-      "includePattern": "./(%%PACKAGE_NAME%%_%%PACKAGE_VERSION%%.*_i386.rpm)",
+      "includePattern": "./.output/(%%PACKAGE_NAME%%_%%PACKAGE_VERSION%%.*_all.rpm)",
       "uploadPattern": "$1"
     }
   ],
