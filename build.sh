@@ -22,9 +22,9 @@ rm -rf .output/*
 PACKAGE_TYPE="deb"
 bundle exec  fpm -t ${PACKAGE_TYPE} -s dir \
   --prefix /usr/share/${PACKAGE_NAME} \
-  --package ".output/${PACKAGE_NAME}_0.1.${VERSION}_all.${PACKAGE_TYPE}" \
+  --package ".output/${PACKAGE_NAME}_${PACKAGE_VERSION}-${VERSION}_all.${PACKAGE_TYPE}" \
   --name "${PACKAGE_NAME}" \
-  --version "${VERSION}" \
+  --version "${PACKAGE_VERSION}-${VERSION}" \
   --architecture all \
   --maintainer "$PACKAGE_MAINTAINER" \
   --url $PACKAGE_URL \
@@ -39,9 +39,9 @@ bundle exec  fpm -t ${PACKAGE_TYPE} -s dir \
 PACKAGE_TYPE="rpm"
 bundle exec  fpm -t ${PACKAGE_TYPE} -s dir \
   --prefix /usr/share/${PACKAGE_NAME} \
-  --package ".output/${PACKAGE_NAME}_0.1.${VERSION}_all.${PACKAGE_TYPE}" \
+  --package ".output/${PACKAGE_NAME}_${PACKAGE_VERSION}-${VERSION}_all.${PACKAGE_TYPE}" \
   --name "${PACKAGE_NAME}" \
-  --version "${VERSION}" \
+  --version "${PACKAGE_VERSION}-${VERSION}" \
   --architecture all \
   --maintainer "$PACKAGE_MAINTAINER" \
   --url $PACKAGE_URL \
