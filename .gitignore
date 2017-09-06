@@ -5,3 +5,5 @@ vendor
 .vagrant
 .librarian
 .*.swp
+.bintray/deb.json
+.bintray/rpm.json
