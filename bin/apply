@@ -15,7 +15,7 @@ else
   echo "Warning: No hiera config found"
 fi
 
-PUPPET_HOME=/usr
+PUPPET_HOME=${PUPPET_HOME:-/usr}
 
 nice ${PUPPET_HOME}/bin/puppet apply \
   --detailed-exitcodes \
