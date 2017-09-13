@@ -1,3 +1,21 @@
+# Class: base
+# ===========================
+#
+# Parameters
+# ----------
+#
+# Variables
+# --------
+#
+# Examples
+# --------
+#
+# Authors
+# -------
+#
+# Copyright
+# ---------
+#
 class base::repos(
   $repos = []
 ) {
