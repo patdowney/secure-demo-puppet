@@ -1,0 +1,12 @@
+[Unit]
+Description=CFSSL
+Documentation=https://cfssl.org/
+
+[Service]
+EnvironmentFile=/etc/defaults/multirootca
+ExecStart=/usr/bin/multirootca $MULTIROOTCA_ARGS
+// -a <%= @address %> <%= @tls_cert_arg %> <%= @tls_key_arg %> -loglevel <%= multirootca_loglevel %> -roots <%= multirootca_ini %>"
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

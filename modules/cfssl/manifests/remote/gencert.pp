@@ -56,11 +56,11 @@ define cfssl::remote::gencert(
 
   exec { "gencert-${caname}":
     command => "cfssl gencert -config=\"${config_path}\" -profile=\"${profile}\" -label=\"${label}\" ${certificate_csr_path} | cfssljson -bare ${caname}",
-    path    => '/usr/local/bin',
+    path    => '/usr/bin',
     cwd     => $certificate_root,
     user    => $owner,
     creates => $certificate_path,
-    require => [ File[$certificate_root], File['/usr/local/bin/cfssl'], File[$certificate_csr_path], File[$config_path], Exec[ca_cert_update] ]
+    require => [ File[$certificate_root], Package['cfssl'], File[$certificate_csr_path], File[$config_path], Exec[ca_cert_update] ]
   }
 
 }

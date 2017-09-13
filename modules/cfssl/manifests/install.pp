@@ -67,20 +67,6 @@ class cfssl::install(
     require => Group['cfssl']
   }
 
-  # install binaries
-  # TODO: replace with a package
-#  file {
-#    'cfsslbins':
-#      path    => '/usr/local/bin/',
-#      ensure  => directory,
-#      recurse => true,
-#      owner   => 'root',
-#      group   => 'cfssl',
-#      mode    => '0755',
-#      source  => "puppet:///modules/cfssl/${architecture}/",
-#      require => Group['cfssl']
-#  }
-
   package { 'cfssl':
     ensure => $release
   }

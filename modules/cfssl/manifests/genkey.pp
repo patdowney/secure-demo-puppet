@@ -43,11 +43,11 @@ define cfssl::genkey(
 
   exec { "genkey-${caname}":
     command => "cfssl genkey -initca ${caname}-csr.json | cfssljson -bare ${caname}",
-    path    => '/usr/local/bin',
+    path    => '/usr/bin',
     cwd     => "/etc/cfssl/${caname}",
     user    => 'cfssl',
     creates => "/etc/cfssl/${caname}/${caname}.pem",
-    require => [ File["/etc/cfssl/${caname}"], File['/usr/local/bin/cfssl'] ]
+    require => [ File["/etc/cfssl/${caname}"], Package['cfssl'] ]
   }
 
   file {

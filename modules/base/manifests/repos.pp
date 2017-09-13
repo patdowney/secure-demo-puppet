@@ -20,5 +20,5 @@ class base::repos(
   $repos = {}
 ) {
 
-  create_resources('yumrepos', $repos)
+  create_resources('yumrepo', $repos)
 }

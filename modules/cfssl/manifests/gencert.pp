@@ -61,12 +61,12 @@ define cfssl::gencert(
 
   exec { "gencert-${caname}":
     command => "cfssl gencert -config=\"${config_path}\" -profile=\"${profile}\" -ca=\"${ca_certificate_path}\" -ca-key=\"${ca_key_path}\" ${certificate_csr_path} | cfssljson -bare ${caname}",
-    path    => '/usr/local/bin',
+    path    => '/usr/bin',
     cwd     => $certificate_root,
     user    => 'cfssl',
     creates => $certificate_path,
     require => [
-      File['/usr/local/bin/cfssl'],
+      Package['cfssl'],
       File[$certificate_csr_path],
       File[$config_path],
       File[$ca_certificate_path],
@@ -92,11 +92,11 @@ define cfssl::gencert(
   if $generate_bundle {
     exec { "mkbundle-${caname}":
       command => "mkbundle -f ${cfssl::config_root}/bundles/${caname}-bundle.crt ${ca_certificate_path} ${certificate_path}",
-      path    => '/usr/local/bin',
+      path    => '/usr/bin',
       cwd     => $certificate_root,
       user    => 'cfssl',
       creates => "${cfssl::config_root}/bundles/${caname}-bundle.crt",
-      require => [ File['/usr/local/bin/mkbundle'], File[$certificate_path] ]
+      require => [ Package['cfssl'], File[$certificate_path] ]
     }
   }
 }
