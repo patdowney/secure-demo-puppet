@@ -43,7 +43,7 @@
 # Copyright 2016 Your name here, unless otherwise noted.
 #
 class cfssl::install(
-  $release = 'R1.2' # String
+  $release = '1.2' # String
 )
 {
   group {
@@ -81,11 +81,7 @@ class cfssl::install(
 #      require => Group['cfssl']
 #  }
 
-
-  cfssl::download {
-    ['cfssl','multirootca','mkbundle', 'cfssljson', 'cfssl-scan',
-  'cfssl-newkey', 'cfssl-certinfo', 'cfssl-bundle']:
-      release => $release
+  package { 'cfssl':
+    ensure => $release
   }
-
 }
