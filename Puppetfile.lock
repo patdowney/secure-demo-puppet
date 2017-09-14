@@ -18,14 +18,7 @@ FORGE
       puppetlabs-stdlib (< 5.0.0, >= 4.13.0)
     puppetlabs-concat (2.2.1)
       puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
-    puppetlabs-stdlib (4.19.0)
-
-GIT
-  remote: git://github.com/ensighten/puppet-daemontools.git
-  ref: master
-  sha: c03a311a6e670ac09cf4530a6d429c5f3416456f
-  specs:
-    jbussdieker-daemontools (0.2.0-ens)
+    puppetlabs-stdlib (4.20.0)
 
 GIT
   remote: git://github.com/patdowney/puppet-vault
@@ -39,7 +32,6 @@ GIT
 
 DEPENDENCIES
   KyleAnderson-consul (>= 0)
-  jbussdieker-daemontools (>= 0)
   jfryman-nginx (>= 0)
   jsok-vault (>= 0)
   pcfens-ca_cert (>= 0)
