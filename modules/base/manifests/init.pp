@@ -26,4 +26,6 @@ class base() {
   include ::base::repos
 
   include ::ca_cert
+
+  include ::base::yum_cron
 }

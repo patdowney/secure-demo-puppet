@@ -20,7 +20,7 @@ class base::repos(
   $repos = {}
 ) {
 
-  package {'epel-release': 
+  package {'epel-release':
     ensure => latest
   }
 

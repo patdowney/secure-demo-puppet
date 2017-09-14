@@ -48,12 +48,10 @@ class cfssl::multirootca(
     $tls_key_arg = ''
   }
 
-  daemontools::service {'cfssl-multirootca':
+  service { 'multirootca':
     ensure  => running,
-    command => "/usr/bin/multirootca -a ${address} ${tls_cert_arg} ${tls_key_arg} -loglevel ${multirootca_loglevel} -roots ${cfssl::multirootca_ini}",
-    logpath => '/var/log/cfssl-multirootca',
-    require => Concat[$cfssl::multirootca_ini],
-    notify  => Service['daemontools_service']
+    enabled => true,
+    require => [ File["${cfssl::config_root}/multirootca-config.json"], Package['cfssl'] ]
   }
 
 }
