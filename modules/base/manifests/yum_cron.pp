@@ -17,7 +17,7 @@
 # ---------
 #
 class base::yum_cron(
-  $update_cmd    = 'security,'
+  $update_cmd    = 'security',
   $apply_updates = 'yes',
 )
 {
