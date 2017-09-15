@@ -27,7 +27,7 @@ class base::yum_cron(
 
   file { '/etc/yum/yum-cron.conf':
     ensure  => present,
-    user    => root,
+    owner   => root,
     group   => root,
     mode    => '0640',
     content => "update_cmd = ${update_cmd}\napply_updates = ${apply_updates}"
