@@ -50,7 +50,7 @@ class cfssl(
   $config_root = '/etc/cfssl' # String
 )
 {
-  class { 'cfssl::install': }
+  include cfssl::install
 
   file {
     "${config_root}/config.json":
