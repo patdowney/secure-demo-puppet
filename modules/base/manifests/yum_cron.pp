@@ -35,7 +35,7 @@ class base::yum_cron(
 
   service { 'yum-cron':
     ensure  => running,
-    enabled => true,
+    enable  => true,
     require => Package['yum-cron'],
   }
 }
