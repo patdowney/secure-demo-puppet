@@ -33,7 +33,7 @@ class cfssl::multirootca(
       mode    => '0440',
       content => template('cfssl/config.json.erb'),
       require => Class['cfssl::install'],
-      notify  => Service['cfssl-multirootca']
+      notify  => Service['multirootca']
   }
 
   if $tls_cert {
@@ -50,7 +50,7 @@ class cfssl::multirootca(
 
   service { 'multirootca':
     ensure  => running,
-    enabled => true,
+    enable  => true,
     require => [ File["${cfssl::config_root}/multirootca-config.json"], Package['cfssl'] ]
   }
 
