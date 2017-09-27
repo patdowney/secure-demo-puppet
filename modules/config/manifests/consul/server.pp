@@ -55,7 +55,7 @@ class config::consul::server(
     version     => $version,
     config_hash => {
       'bootstrap_expect'       => $bootstrap_expect,
-      'data_dir'               => '/opt/consul',
+      'data_dir'               => $::consul::data_dir,
       'datacenter'             => $datacenter,
       'log_level'              => $log_level,
       'advertise_addr'         => $advertise_addr,
@@ -87,10 +87,10 @@ class config::consul::server(
     }
   }
 
-  file { "${::consul::data_dir}/acl.d":
+  file { "${::consul::config_dir}/acl.d":
     ensure  => directory,
     owner   => 'consul',
-    require => File[$::consul::data_dir]
+    require => File[$::consul::config_dir]
   }
 
   create_resources('config::consul::server::acl', $acls)
