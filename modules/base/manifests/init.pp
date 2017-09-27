@@ -23,6 +23,10 @@ class base() {
     ensure => latest
   }
 
+  package {'wget':
+    ensure => latest
+  }
+
   include ::base::repos
 
   include ::ca_cert
