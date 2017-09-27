@@ -23,6 +23,10 @@ class base() {
     ensure => latest
   }
 
+  package {'fail2ban':
+    ensure => latest
+  }
+
   package {'unzip':
     ensure => latest
   }
