@@ -8,13 +8,13 @@ define config::consul::server::acl(
   $ensure = 'present',
 ) {
 
-  $acl_file = "/etc/consul/acl.d/${title}"
+  $acl_file = "${::consul::data_dir}/acl.d/${title}"
 
   file { $acl_file:
     owner   => 'consul',
     mode    => '0600',
     content => template('config/consul_acl.json.erb'),
-    require => [File['/etc/consul/acl.d'], User['consul']]
+    require => [File["${::consul::data_dir}/acl.d"], User['consul']]
   }
 
   exec { "put-${title}-acl":

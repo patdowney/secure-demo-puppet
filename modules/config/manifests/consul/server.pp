@@ -82,14 +82,15 @@ class config::consul::server(
       'acl_default_policy'     => $acl_default_policy,
       'acl_master_token'       => $acl_master_token,
       'acl_token'              => $acl_token,
-      'disable_remote_exec'    => true
+      'disable_remote_exec'    => true,
+      'ui'                     => true,
     }
   }
 
-  file { '/etc/consul/acl.d':
+  file { "${::consul::data_dir}"/acl.d':
     ensure  => directory,
     owner   => 'consul',
-    require => File['/etc/consul']
+    require => File[$::consul::data_dir]
   }
 
   create_resources('config::consul::server::acl', $acls)
