@@ -87,7 +87,7 @@ class config::consul::server(
     }
   }
 
-  file { "${::consul::data_dir}"/acl.d':
+  file { "${::consul::data_dir}/acl.d":
     ensure  => directory,
     owner   => 'consul',
     require => File[$::consul::data_dir]
