@@ -19,6 +19,10 @@
 class base() {
   Yumrepo <| |> -> Package <| provider != 'rpm' |>
 
+  package {'bind-utils':
+    ensure => latest
+  }
+
   package {'unzip':
     ensure => latest
   }
