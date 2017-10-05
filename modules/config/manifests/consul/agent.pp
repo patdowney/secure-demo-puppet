@@ -71,6 +71,7 @@ class config::consul::agent(
       'verify_server_hostname' => $verify_server_hostname,
       'acl_token'              => $acl_token,
       'acl_datacenter'         => $acl_datacenter,
-    }
+    },
+    require     => Class['ca_cert']
   }
 }

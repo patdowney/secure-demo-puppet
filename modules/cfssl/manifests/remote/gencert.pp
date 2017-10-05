@@ -63,4 +63,9 @@ define cfssl::remote::gencert(
     require => [ File[$certificate_root], Package['cfssl'], File[$certificate_csr_path], File[$config_path], Exec[ca_cert_update] ]
   }
 
+  file { $certificate_path:
+    ensure  => present,
+    require => Exec["gencert-${caname}"];
+  }
+
 }

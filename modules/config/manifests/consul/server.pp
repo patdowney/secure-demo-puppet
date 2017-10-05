@@ -55,12 +55,11 @@ class config::consul::server(
     version     => $version,
     config_hash => {
       'bootstrap_expect'       => $bootstrap_expect,
-      'data_dir'               => $::consul::data_dir,
-      'datacenter'             => $datacenter,
+#      'data_dir'               => '/var/lib/consul', #$consul::data_dir,
+      # 'datacenter'             => $datacenter,
       'log_level'              => $log_level,
       'advertise_addr'         => $advertise_addr,
       'addresses'              => {
-        'rpc'   => $listen_addr,
         'https' => $https_addr
       },
       'enable_syslog'          => true,
@@ -84,8 +83,11 @@ class config::consul::server(
       'acl_token'              => $acl_token,
       'disable_remote_exec'    => true,
       'ui'                     => true,
-    }
+    },
+    require     => [Class['ca_cert']]
   }
+
+  File[$cert_file] -> Service['consul']
 
   file { "${::consul::config_dir}/acl.d":
     ensure  => directory,

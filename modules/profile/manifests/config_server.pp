@@ -17,7 +17,10 @@
 # ---------
 #
 class profile::config_server() {
+
+
   include ::base
   include ::cfssl::remote
   include ::config::consul::server
+  #  Cfssl::Remote::Gencert['consul'] -> Service['consul']
 }

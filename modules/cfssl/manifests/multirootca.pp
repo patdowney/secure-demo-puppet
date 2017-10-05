@@ -36,22 +36,22 @@ class cfssl::multirootca(
       notify  => Service['multirootca']
   }
 
-  if $tls_cert {
-    $tls_cert_arg = "-tls-cert ${tls_cert}"
-  } else {
-    $tls_cert_arg = ''
-  }
-
-  if $tls_key {
-    $tls_key_arg = "-tls-key ${tls_key}"
-  } else {
-    $tls_key_arg = ''
-  }
+#  if $tls_cert {
+#    $tls_cert_arg = "-tls-cert ${tls_cert}"
+#  } else {
+#    $tls_cert_arg = ''
+#  }
+#
+#  if $tls_key {
+#    $tls_key_arg = "-tls-key ${tls_key}"
+#  } else {
+#    $tls_key_arg = ''
+#  }
 
   service { 'multirootca':
     ensure  => running,
     enable  => true,
-    require => [ File["${cfssl::config_root}/multirootca-config.json"], Package['cfssl'] ]
+    require => [ Concat[$cfssl::multirootca_ini],  File["${cfssl::config_root}/multirootca-config.json"], Package['cfssl'] ]
   }
 
 }

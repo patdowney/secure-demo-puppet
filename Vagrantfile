@@ -7,43 +7,71 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #  config.vm.box = "puppetlabs/debian-8.2-64-puppet"
    #config.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
-   config.vm.box = "puppetlabs/ubuntu-16.04-64-puppet"
+#   config.vm.box = "puppetlabs/ubuntu-16.04-64-puppet"
+#   config.vm.box = "centos/7"
+   config.vm.box = "centos/7"
+   config.vm.guest = "redhat"
 
-   config.vm.provision "shell", inline: "apt-get update"
+  base_box    = 'centos/7'
+  default_box = 'secure-demo-base-20171005'
 
   servers = {
-    'ca' => { 'role' => 'ca', 'ip' => '172.10.10.10' },
-    'consul00'   => { 'role' => 'consul', 'ip' => '172.10.10.16' },
-    'consul01'   => { 'role' => 'consul', 'ip' => '172.10.10.17' },
-    'consul02'   => { 'role' => 'consul', 'ip' => '172.10.10.18' },
-    'consului00' => { 'role' => 'configui',     'ip' => '172.10.10.20' },
-    'vault00'    => { 'role' => 'vault',  'ip' => '172.10.10.32' },
+    'base' => { 'role' => 'base', 'ip' => '172.10.10.252', 'box' => base_box },
+    'ca' => { 'role' => 'ca', 'ip' => '172.10.10.10', 'box' => default_box },
+    'consul00'   => { 'role' => 'consul', 'ip' => '172.10.10.16', 'box' => default_box  },
+    'consul01'   => { 'role' => 'consul', 'ip' => '172.10.10.17', 'box' => default_box  },
+    'consul02'   => { 'role' => 'consul', 'ip' => '172.10.10.18', 'box' => default_box  },
+    'consului00' => { 'role' => 'configui',     'ip' => '172.10.10.20', 'box' => default_box  },
+    'vault00'    => { 'role' => 'vault',  'ip' => '172.10.10.32', 'box' => default_box  },
 #    'vault02'    => { 'role' => 'vault_server',  'ip' => '172.10.10.33' },
   }
 
   servers.each_with_index do |server_properties, i|
     name = server_properties.first
-    role = server_properties.last['role']
-    private_ip = server_properties.last['ip']
+    props = server_properties.last
+    role = props['role']
+    private_ip = props['ip']
 
    # config.vm.provider "virtualbox" do |vb|
    #   vb.customize ["modifyvm", :id, "--macaddress1", "5CA1AB1E0001" ]
    # end
 
     config.vm.define "#{name}" do |server|
-      config.vm.provider "virtualbox" do |vb|
+      server.vm.box = props['box']
+      server.vm.provider "virtualbox" do |vb|
         vb.customize ["modifyvm", :id, "--macaddress1", "5CA1AB1E000#{i}" ]
       end
       server.vm.hostname = "#{name}"
       server.vm.network "private_network", ip: private_ip
 
-      server.vm.provision "shell", inline: "mkdir -p /etc/facter/facts.d ; echo 'role=#{role}' > /etc/facter/facts.d/role.txt"
-      server.vm.provision "shell", inline: "echo 'provider=vagrant' > /etc/facter/facts.d/provider.txt"
+      if role == 'base'
+        server.vm.provision "shell", inline: "yum -y upgrade"
+        server.vm.provision "file", source: "../secure-demo-packer/files/patdowney-secure-demo.repo", destination: "/tmp/patdowney-secure-demo.repo"
+        server.vm.provision "file", source: "../secure-demo-packer/files/patdowney-rpm.repo", destination: "/tmp/patdowney-rpm.repo"
+
+
+        bootstrap_sh = <<SCRIPT
+mv /tmp/patdowney-secure-demo.repo /etc/yum.repos.d/patdowney-secure-demo.repo
+mv /tmp/patdowney-rpm.repo /etc/yum.repos.d/patdowney-rpm.repo
+yum install -y epel-release
+yum install -y https://yum.puppetlabs.com/puppet/puppet5-release-el-7.noarch.rpm
+yum install -y puppet-agent
+#yum install -y secure-demo-hiera
+#yum install -y secure-demo-puppet
+SCRIPT
+
+        server.vm.provision "shell", inline: bootstrap_sh
+
+        server.vm.provision "shell", inline: "mkdir -p /etc/facter/facts.d"
+        server.vm.provision "shell", inline: "echo 'provider=vagrant' > /etc/facter/facts.d/provider.txt"
+      end
+
+      server.vm.provision "shell", inline: "echo 'role=#{role}' > /etc/facter/facts.d/role.txt"
 
 
 # comment out the following to test debian package bit
 # START BLOCK
-  config.vm.synced_folder "../secure-demo-hiera/", "/etc/hiera"
+      server.vm.synced_folder "../secure-demo-hiera/", "/etc/hiera"
 
       server.vm.provision "puppet" do |puppet|
         puppet.manifests_path = "manifests" 
@@ -52,6 +80,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         puppet.environment = "production"
         puppet.environment_path = "../.."
         puppet.hiera_config_path = "../secure-demo-hiera/hiera.yaml"
+        puppet.options = "--verbose --debug"
         puppet.facter = {
           "cfssl_auth_key_primary"     => "0123456789ABCDEF0123456789ABCDEF",
           "consul_encrypt_key"         => "71NuxGFXa727cmXKV/XD1Q==",

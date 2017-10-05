@@ -76,9 +76,11 @@ define cfssl::gencert(
 
   file {
     $certificate_key_path:
+      ensure  => present,
       require => Exec["gencert-${caname}"];
     $certificate_path:
-      require => Exec["gencert-${caname}"]
+      ensure  => present,
+      require => Exec["gencert-${caname}"];
   }
 
   if $configure_multirootca {
@@ -96,7 +98,13 @@ define cfssl::gencert(
       cwd     => $certificate_root,
       user    => 'cfssl',
       creates => "${cfssl::config_root}/bundles/${caname}-bundle.crt",
-      require => [ Package['cfssl'], File[$certificate_path] ]
+      require => [ Package['cfssl'], File[$ca_certificate_path],File[$certificate_path] ]
     }
+
+    file {"${cfssl::config_root}/bundles/${caname}-bundle.crt":
+      ensure  => present,
+      require => Exec["mkbundle-${caname}"]
+    }
+
   }
 }
