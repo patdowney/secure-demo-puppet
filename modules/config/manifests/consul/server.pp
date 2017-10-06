@@ -56,7 +56,7 @@ class config::consul::server(
     config_hash => {
       'bootstrap_expect'       => $bootstrap_expect,
 #      'data_dir'               => '/var/lib/consul', #$consul::data_dir,
-      # 'datacenter'             => $datacenter,
+      'datacenter'             => $datacenter,
       'log_level'              => $log_level,
       'advertise_addr'         => $advertise_addr,
       'addresses'              => {
