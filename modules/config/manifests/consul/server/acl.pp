@@ -19,7 +19,7 @@ define config::consul::server::acl(
 
   exec { "put-${title}-acl":
     # sleep 1s is to give consul time to bind to the https_port
-    command => "/bin/sleep 1; curl --cacert ${::config::consul::server::ca_file} --cert ${::config::consul::server::cert_file} --key ${::config::consul::server::key_file} --header \"X-Consul-Token: ${::consul_acl_master_token}\" --request PUT --data @${acl_file} https://${::hostname}:${::config::consul::server::https_port}/v1/acl/create",
+    command => "/bin/sleep 1; curl --cacert ${::config::consul::server::ca_file} --cert ${::config::consul::server::cert_file} --key ${::config::consul::server::key_file} --header \"X-Consul-Token: ${::consul_acl_master_token}\" --request PUT --data @${acl_file} https://${::fqdn}:${::config::consul::server::https_port}/v1/acl/create",
     user    => 'consul',
     path    => '/usr/bin',
     require => File[$acl_file]

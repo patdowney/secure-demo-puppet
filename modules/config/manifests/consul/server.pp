@@ -63,7 +63,7 @@ class config::consul::server(
         'https' => $https_addr
       },
       'enable_syslog'          => true,
-      'node_name'              => $::hostname,
+      'node_name'              => $::fqdn,
       'server'                 => true,
       'encrypt'                => $encrypt_key,
       'start_join'             => $consul_start_join,
@@ -71,10 +71,11 @@ class config::consul::server(
       'key_file'               => $key_file,
       'ca_file'                => $ca_file,
       'ports'                  => {
-        'http'  => $http_port,
+        'http'  => -1,
         'https' => $https_port
       },
       'verify_incoming'        => $verify_incoming,
+      'verify_incoming_rpc'    => $verify_incoming,
       'verify_outgoing'        => $verify_outgoing,
       'verify_server_hostname' => $verify_server_hostname,
       'acl_datacenter'         => $acl_datacenter,

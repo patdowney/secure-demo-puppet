@@ -51,7 +51,7 @@ class config::consul::agent(
       'data_dir'               => '/opt/consul',
       'enable_syslog'          => true,
       'server'                 => false,
-      'node_name'              => $::hostname,
+      'node_name'              => $::fqdn,
       'ui_dir'                 => $ui_dir,
       'datacenter'             => $datacenter,
       'log_level'              => $log_level,
