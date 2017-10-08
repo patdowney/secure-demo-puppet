@@ -31,7 +31,7 @@ class config::consul::agent(
   $log_level        = 'INFO', # String
   $https_port       = 8501, # Integer
   $enable_ui        = false, # Boolean
-  $enable_enable_script_check = false, # Boolean
+  $enable_script_checks = false, # Boolean
   $verify_incoming  = false, # Boolean
   $verify_server_hostname = false # Boolean
 ) {
