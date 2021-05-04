@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.5'
+ruby '2.6.3'
 
 # version installed on ubuntu utopia
 gem 'facter'
