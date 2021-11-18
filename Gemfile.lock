@@ -23,11 +23,11 @@ GEM
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     clamp (1.0.1)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.9)
     deep_merge (1.2.1)
     diff-lcs (1.4.4)
     dotenv (2.7.6)
-    facter (4.1.1)
+    facter (4.2.5)
       hocon (~> 1.3)
       thor (>= 1.0.1, < 2.0)
     faraday (1.4.1)
@@ -103,7 +103,7 @@ GEM
       mustache (= 0.99.8)
       stud
     public_suffix (4.0.6)
-    puppet (7.6.1)
+    puppet (7.12.1)
       concurrent-ruby (~> 1.0)
       deep_merge (~> 1.0)
       facter (> 2.0.1, < 5)
@@ -115,7 +115,7 @@ GEM
       scanf (~> 1.0)
       semantic_puppet (~> 1.0)
     puppet-lint (2.4.2)
-    puppet-resource_api (1.8.13)
+    puppet-resource_api (1.8.14)
       hocon (>= 1.0)
     puppet_forge (3.0.0)
       faraday (~> 1.3)
@@ -148,7 +148,7 @@ GEM
       io-like (~> 0.3)
     ruby2_keywords (0.0.4)
     scanf (1.0.0)
-    semantic_puppet (1.0.3)
+    semantic_puppet (1.0.4)
     stud (0.0.23)
     text (1.3.1)
     thor (1.1.0)
@@ -175,7 +175,7 @@ DEPENDENCIES
   hiera
   librarian-puppet
   librarianp!
-  puppet
+  puppet (>= 7.12.1)
   puppet-lint
   rspec-puppet
   travis
@@ -184,4 +184,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
